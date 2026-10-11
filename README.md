@@ -40,8 +40,7 @@ El script `limpiar_inventario.py` corrige estos errores y produce `reporte_inven
 | Filas limpias en el reporte | 112 |
 | Filas enviadas a revisión manual | 8 |
 
-<!-- Agregá acá una captura de pantalla de la hoja "Alertas" o "Resumen":
-![Reporte](captura_reporte.png) -->
+![Reporte de inventario](captura_reporte.png)
 
 ## 🚀 Cómo usarlo
 
