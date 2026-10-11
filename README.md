@@ -82,7 +82,7 @@ Python · pandas · openpyxl · Excel
 
 ---
 
-## 🇺🇸 English summary
+## English summary
 
 Python script that cleans a messy inventory spreadsheet (duplicates, mixed date formats, text-stored numbers, inconsistent categories, missing suppliers, invalid stock) and generates a formatted Excel report with low-stock alerts, a category summary and a cleaning log. Records that cannot be fixed safely are flagged for manual review instead of guessed. All data is simulated.
 
