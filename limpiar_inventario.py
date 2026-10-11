@@ -49,7 +49,7 @@ def a_fecha(valor):
 
 fechas = df["Fecha_Ingreso"].apply(a_fecha)
 log.append(("Fechas no reconocidas (revisar a mano)", int(fechas.isna().sum())))
-df["Fecha_Ingreso"] = fechas
+df["Fecha_Ingreso"] = pd.to_datetime(fechas)
 
 # 5) Costo: "$1,850" -> 1850 ----------------------------------------------
 costo = (df["Costo_Unitario"].astype(str)
@@ -71,7 +71,7 @@ df.loc[df["Fecha_Ingreso"].isna(), "Revisar"] += " Fecha inválida"
 df["Revisar"] = df["Revisar"].str.strip()
 
 # 7) Cálculos del reporte -------------------------------------------------
-limpio = df[df["Revisar"] == ""].copy()
+limpio = df[df["Revisar"] == ""].drop(columns=["Revisar"]).copy()
 limpio["Stock_Actual"] = limpio["Stock_Actual"].astype(int)
 limpio["Valor_Stock"] = limpio["Stock_Actual"] * limpio["Costo_Unitario"]
 limpio["Estado"] = limpio.apply(
@@ -109,6 +109,9 @@ with pd.ExcelWriter(SALIDA, engine="openpyxl", datetime_format="DD/MM/YYYY") as 
         for i, col in enumerate(datos.columns, 1):
             ancho = max(len(str(col)), *(len(str(v)) for v in datos[col])) if len(datos) else len(str(col))
             ws.column_dimensions[get_column_letter(i)].width = min(ancho + 3, 40)
+            if col == "Fecha_Ingreso":
+                for c in ws[get_column_letter(i)][1:]:
+                    c.number_format = "DD/MM/YYYY"
             if col in ("Costo_Unitario", "Valor_Stock", "Valor_Total"):
                 for c in ws[get_column_letter(i)][1:]:
                     c.number_format = '$#,##0'
