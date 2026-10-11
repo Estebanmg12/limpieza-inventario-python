@@ -66,6 +66,7 @@ Para usarlo con tu propia planilla, debe tener estas columnas:
 ├── generar_datos.py          # Genera los datos simulados de prueba
 ├── inventario_sucio.xlsx     # Ejemplo de entrada, con errores
 ├── reporte_inventario.xlsx   # Ejemplo de salida
+├── captura_reporte.png       # Captura del reporte generado
 └── requirements.txt          # Dependencias
 ```
 
